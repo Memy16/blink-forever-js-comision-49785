@@ -18,7 +18,7 @@ const preguntas = [
         respuesta: 1
     },
     {
-        pregunta: "Aquí hay algunos álbumes de BLACKPINK. Elija la respuesta que los enumere en el orden de publicación correcto.   A.THE ALBUM   B.SQUARE UP    C.BORN PINK     D.KILL THIS LOVE",
+        pregunta: "Aquí hay algunos álbumes de BLACKPINK. Elija la respuesta que los enumere en el orden de publicación correcto.\n A.THE ALBUM\n B.SQUARE UP\n C.BORN PINK\n D.KILL THIS LOVE",
         opciones: ["D - B - A - C", "B - D - A - C", "B - D - C - A", "D - B - C - A", "A - B - D - C"],
         respuesta: 5
     },
