@@ -64,6 +64,8 @@ function verificarRespuesta() {
             }
         }
         mostrarPregunta();
+
+
 /*let puntos = 0;
 let q02 = prompt("Anota la suma de las fechas de nacimiento de todos los miembros de BLACKPINK. (en formato MMDD)");
 if (q02 !== null) {
