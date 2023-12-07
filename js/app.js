@@ -4,14 +4,11 @@ const preguntas = [
         opciones: ["JISOO - JENNIE - ROSÉ - LISA", "JISOO - LISA - JENNIE - ROSÉ", "JENNIE - JISOO - LISA - ROSÉ", "JENNIE - JISOO - ROSÉ - LISA", "JENNIE - LISA - JISOO - ROSÉ"],                
         respuesta: 5
     },
-    /*{
-        pregunta: "Anota la suma de las fechas de nacimiento de todos los miembros de BLACKPINK.",
-        respuesta:757,
-    },
     {
-        pregunta: "Escribe el título del primer vídeo de práctica de baile subido al canal oficial de YouTube de BLACKPINK. (Basado en canciones de BLACKPINK)",
-        respuesta: ["whistle", "Whistle", "WHISTLE", "휘파람"],
-    },*/
+        pregunta: "¿Cual es la suma de las fechas de nacimiento de todos los miembros de BLACKPINK?",
+        opciones: ["757", "752", "57"],
+        respuesta:757
+    },
     {
         pregunta: "Elige qué tipo de regalo floral recibe JENNIE de su madre cada cumpleaños.",
         opciones: ["Rosa azul", "Girasol", "Jacinto amarillo", "Rosas rosadas", "Lisianto"],
@@ -48,52 +45,39 @@ function verificarRespuesta() {
     const pregunta = preguntas[preguntaActual];
     const respuestaUsuario = parseInt(document.querySelector('input[name="opcion"]:checked').value);
 
-            if (!isNaN(respuestaUsuario) && respuestaUsuario === pregunta.respuesta) {
-                alert('¡Respuesta correcta!');
-                puntos++;
-            } else {
-                alert('Respuesta incorrecta.');
-            }
+function mostrarResultado(resultado) {
+    const resultadoDiv = document.createElement('div');
 
-            preguntaActual++;
+    resultadoDiv.style.position = 'fixed';
+    resultadoDiv.style.top = '50%';
+    resultadoDiv.style.left = '50%';
+    resultadoDiv.style.transform = 'translate(-50%, -50%)';
+    resultadoDiv.style.padding = '20px';
+    resultadoDiv.style.borderRadius = '10px';
+    resultadoDiv.style.background = resultado === 'correcta' ? '#cc20eb' : '#000000';
+    resultadoDiv.style.color = '#fff';
+    resultadoDiv.style.textAlign = 'center';
+    resultadoDiv.style.zIndex = '9999';
 
-            if (preguntaActual < preguntas.length) {
-                mostrarPregunta();
-            } else {
-                alert('Juego terminado. Puntuación final: ' + puntos + '/' + preguntas.length);
-            }
-        }
-        mostrarPregunta();
+    const imagen = document.createElement('img');
+    imagen.src = resultado === 'correcta' ? 'https://i.postimg.cc/QCh391Cq/blackpink09-blink-forever.jpg' : 'https://i.postimg.cc/8cngK5T8/lalisa09-blink-forever.jpg';
+    imagen.style.width = '250px'; 
+    const mensaje = document.createElement('p');
+    mensaje.textContent = resultado === 'correcta' ? '¡Respuesta correcta!' : 'Respuesta incorrecta.';
 
+    resultadoDiv.appendChild(imagen);
+    resultadoDiv.appendChild(mensaje);
+    document.body.appendChild(resultadoDiv);
+    setTimeout(() => {
+        document.body.removeChild(resultadoDiv);
+    }, 3000);
 
-/*let puntos = 0;
-let q02 = prompt("Anota la suma de las fechas de nacimiento de todos los miembros de BLACKPINK. (en formato MMDD)");
-if (q02 !== null) {
-    if (isNaN(q02) || q02 !== "757") {
-        alert("Respuesta incorrecta.");
-        puntos--;
+    if (!isNaN(respuestaUsuario) && respuestaUsuario === pregunta.respuesta) {
+    mostrarResultado('correcta');
+    puntos++;
     } else {
-        alert("¡Respuesta correcta!");
-        puntos++;
+        mostrarResultado('incorrecta');
     }
-}
+        preguntaActual++;
 
-
-for (let intento = 1; intento <= 3; intento++) {
-    let pregunta2 = prompt("Escribe el título del primer vídeo de práctica de baile subido al canal oficial de YouTube de BLACKPINK. (Basado en canciones de BLACKPINK)");
-
-    if (pregunta2 !== null) {
-        if (!/^[a-zA-Z\s]+$/.test(pregunta2)) {
-            alert("Respuesta incorrecta.");
-        } else if (["whistle", "whistle", "휘파람"].includes(pregunta2.toLowerCase())) {
-            alert("¡Respuesta correcta!");
-            puntos++;
-            break;  
-        } else {
-            alert("Respuesta incorrecta.");
-            puntos--;
-        }
-    }
-}
-
-alert(puntos + "/2 aciertos");*/
+    preguntaActual < preguntas.length ? mostrarPregunta() : alert('Juego terminado. Puntuación final: ' + puntos + '/' + preguntas.length);
